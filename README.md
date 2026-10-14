@@ -3,7 +3,10 @@
 Invitación virtual al almuerzo de celebración del grado de David Caicedo Samboni,
 Ingeniero Mecatrónico y Especialista en IA.
 
-Sitio estático (HTML, CSS y JS sin dependencias), listo para GitHub Pages desde la rama `main` (carpeta raíz).
+Sitio estático (HTML, CSS y JS sin dependencias), publicado en https://deivs117.github.io/invitacion-grado/
+
+Cada push a `main` lo publica automáticamente con el workflow `.github/workflows/pages.yml`
+(también se puede lanzar a mano desde la pestaña Actions).
 
 ## Estructura
 

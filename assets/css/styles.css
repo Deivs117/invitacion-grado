@@ -118,7 +118,7 @@ h1 { margin: 8px 0 0; }
 
 /* Detalles */
 .tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-.tarjeta { padding: 28px 20px; text-align: center; }
+.tarjeta { padding: 28px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .tarjeta h3 { margin: 8px 0 4px; font-size: .85rem; letter-spacing: .18em; text-transform: uppercase; color: var(--oro-4); }
 .tarjeta p { margin: 0; font-size: 1.1rem; }
 .tarjeta .nota { margin-top: 6px; font-size: .85rem; font-style: italic; opacity: .85; }
