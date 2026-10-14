@@ -15,7 +15,7 @@ const CONFIG = {
     { nombre: 'Esperanza', detalle: '(mamá de David)', numero: '573216434068' },
     { nombre: 'David', detalle: '', numero: '573103319477' },
   ],
-  mensaje: '¡Hola! Confirmo mi asistencia al almuerzo de grado de David el sábado 7 de noviembre. Asistiremos: ',
+  mensaje: '¡Hola! Confirmo mi asistencia al almuerzo de grado de David el sábado 7 de noviembre.',
 };
 
 // ===== Rellenar textos y enlaces =====
