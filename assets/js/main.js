@@ -2,11 +2,11 @@
 const CONFIG = {
   evento: '2026-11-07T12:00:00-05:00',          // hora de Colombia
   duracionHoras: 5,
-  lugar: 'RR Eventos · Callejón El Uval, Candelaria',
+  lugar: 'Salón RR Eventos El Uval · Candelaria',
   referencia: 'Al lado de la gasolinera Primax El Uval',
   mapsUrl: 'https://maps.app.goo.gl/A7YgtKDka1rFJBvbA',     // enlace compartido del lugar
   busquedaMapa: 'CMM2+2F Callejón el UVAL, Candelaria, Valle del Cauca',  // ubicación exacta (plus code)
-  direccionCalendario: 'RR Eventos, Callejón El Uval, Candelaria, Valle del Cauca',
+  direccionCalendario: 'Salón RR Eventos El Uval, Callejón El Uval, Candelaria, Valle del Cauca',
   fechaLimite: 'lunes 19 de octubre',
   vestimenta: 'Casual formal.',
   parqueadero: 'Sí, hay parqueadero, aunque es limitado. No es necesario reservarlo.',
