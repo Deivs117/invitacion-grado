@@ -121,6 +121,7 @@ h1 { margin: 8px 0 0; }
 .tarjeta { padding: 28px 20px; text-align: center; }
 .tarjeta h3 { margin: 8px 0 4px; font-size: .85rem; letter-spacing: .18em; text-transform: uppercase; color: var(--oro-4); }
 .tarjeta p { margin: 0; font-size: 1.1rem; }
+.tarjeta .nota { margin-top: 6px; font-size: .85rem; font-style: italic; opacity: .85; }
 .ico { width: 40px; height: 40px; fill: none; stroke: var(--oro-4); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 
 .acciones { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin: 28px 0; }
@@ -134,6 +135,9 @@ h1 { margin: 8px 0 0; }
 }
 .boton:hover { transform: translateY(-2px); background-position: 100% 0; }
 .boton.secundario { background: transparent; color: var(--marfil); box-shadow: inset 0 0 0 2px var(--oro-3); }
+.boton .txt { display: flex; flex-direction: column; align-items: center; line-height: 1.25; }
+.boton small { font-weight: 400; font-size: .8em; opacity: .85; }
+.boton small:empty { display: none; }
 .boton svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
 
 .mapa { padding: 10px; }

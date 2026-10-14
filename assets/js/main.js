@@ -2,15 +2,18 @@
 const CONFIG = {
   evento: '2026-11-07T12:00:00-05:00',          // hora de Colombia
   duracionHoras: 5,
-  lugar: 'RR Eventos · Candelaria',
-  busquedaMapa: 'RR Eventos, Candelaria, Valle del Cauca',  // texto para Google Maps
-  fechaLimite: '',                               // ej. '31 de octubre'
-  vestimenta: '',                                // ej. 'Formal. Te sugerimos tonos oscuros.'
-  parqueadero: '',                               // ej. 'Sí, el lugar cuenta con parqueadero.'
+  lugar: 'RR Eventos · Callejón El Uval, Candelaria',
+  referencia: 'Al lado de la gasolinera Primax El Uval',
+  mapsUrl: 'https://maps.app.goo.gl/A7YgtKDka1rFJBvbA',     // enlace compartido del lugar
+  busquedaMapa: 'CMM2+2F Callejón el UVAL, Candelaria, Valle del Cauca',  // ubicación exacta (plus code)
+  direccionCalendario: 'RR Eventos, Callejón El Uval, Candelaria, Valle del Cauca',
+  fechaLimite: 'lunes 19 de octubre',
+  vestimenta: 'Casual formal.',
+  parqueadero: 'Sí, hay parqueadero, aunque es limitado. No es necesario reservarlo.',
   // WhatsApp con indicativo de país y sin '+' ni espacios, ej. '573001234567'
   whatsapp: [
-    { nombre: 'David', numero: '' },
-    { nombre: 'mamá', numero: '' },
+    { nombre: 'Esperanza', detalle: '(mamá de David)', numero: '' },
+    { nombre: 'David', detalle: '', numero: '' },
   ],
   mensaje: '¡Hola! Confirmo mi asistencia al almuerzo de grado de David el sábado 7 de noviembre. Asistiremos: ',
 };
@@ -29,12 +32,12 @@ const inicio = new Date(CONFIG.evento);
 const fin = new Date(inicio.getTime() + CONFIG.duracionHoras * 3600e3);
 const utc = (d) => d.toISOString().replace(/[-:]|\.\d{3}/g, '');
 const enlaces = {
-  maps: `https://www.google.com/maps/search/?api=1&query=${q}`,
+  maps: CONFIG.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${q}`,
   mapa: `https://www.google.com/maps?q=${q}&output=embed`,
   calendario: 'https://calendar.google.com/calendar/render?action=TEMPLATE'
     + `&text=${encodeURIComponent('Almuerzo de grado de David Caicedo Samboni')}`
     + `&dates=${utc(inicio)}/${utc(fin)}`
-    + `&location=${q}`
+    + `&location=${encodeURIComponent(CONFIG.direccionCalendario)}`
     + `&details=${encodeURIComponent('Lluvia de sobres')}`,
 };
 $$('[data-link]').forEach((el) => {
@@ -44,7 +47,8 @@ $$('[data-link]').forEach((el) => {
 
 $$('[data-whatsapp]').forEach((el) => {
   const contacto = CONFIG.whatsapp[el.dataset.whatsapp];
-  el.querySelector('span').textContent = `Confirmar con ${contacto.nombre}`;
+  el.querySelector('.txt span').textContent = `Confirmar con ${contacto.nombre}`;
+  el.querySelector('small').textContent = contacto.detalle;
   if (contacto.numero) {
     el.href = `https://wa.me/${contacto.numero}?text=${encodeURIComponent(CONFIG.mensaje)}`;
   } else {
