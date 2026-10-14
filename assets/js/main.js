@@ -12,8 +12,8 @@ const CONFIG = {
   parqueadero: 'Sí, hay parqueadero, aunque es limitado. No es necesario reservarlo.',
   // WhatsApp con indicativo de país y sin '+' ni espacios, ej. '573001234567'
   whatsapp: [
-    { nombre: 'Esperanza', detalle: '(mamá de David)', numero: '' },
-    { nombre: 'David', detalle: '', numero: '' },
+    { nombre: 'Esperanza', detalle: '(mamá de David)', numero: '573216434068' },
+    { nombre: 'David', detalle: '', numero: '573103319477' },
   ],
   mensaje: '¡Hola! Confirmo mi asistencia al almuerzo de grado de David el sábado 7 de noviembre. Asistiremos: ',
 };
