@@ -1,0 +1,65 @@
+// ===== Configuración: todo lo editable de la invitación está aquí =====
+const CONFIG = {
+  evento: '2026-11-07T12:00:00-05:00',          // hora de Colombia
+  duracionHoras: 5,
+  lugar: 'RR Eventos · Candelaria',
+  busquedaMapa: 'RR Eventos, Candelaria, Valle del Cauca',  // texto para Google Maps
+  fechaLimite: '',                               // ej. '31 de octubre'
+  vestimenta: '',                                // ej. 'Formal. Te sugerimos tonos oscuros.'
+  parqueadero: '',                               // ej. 'Sí, el lugar cuenta con parqueadero.'
+  // WhatsApp con indicativo de país y sin '+' ni espacios, ej. '573001234567'
+  whatsapp: [
+    { nombre: 'David', numero: '' },
+    { nombre: 'mamá', numero: '' },
+  ],
+  mensaje: '¡Hola! Confirmo mi asistencia al almuerzo de grado de David el sábado 7 de noviembre. Asistiremos: ',
+};
+
+// ===== Rellenar textos y enlaces =====
+const $$ = (sel) => document.querySelectorAll(sel);
+
+$$('[data-config]').forEach((el) => {
+  const valor = CONFIG[el.dataset.config];
+  if (valor) el.textContent = valor;
+  else el.classList.add('pendiente');
+});
+
+const q = encodeURIComponent(CONFIG.busquedaMapa);
+const inicio = new Date(CONFIG.evento);
+const fin = new Date(inicio.getTime() + CONFIG.duracionHoras * 3600e3);
+const utc = (d) => d.toISOString().replace(/[-:]|\.\d{3}/g, '');
+const enlaces = {
+  maps: `https://www.google.com/maps/search/?api=1&query=${q}`,
+  mapa: `https://www.google.com/maps?q=${q}&output=embed`,
+  calendario: 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+    + `&text=${encodeURIComponent('Almuerzo de grado de David Caicedo Samboni')}`
+    + `&dates=${utc(inicio)}/${utc(fin)}`
+    + `&location=${q}`
+    + `&details=${encodeURIComponent('Lluvia de sobres')}`,
+};
+$$('[data-link]').forEach((el) => {
+  const url = enlaces[el.dataset.link];
+  if (el.tagName === 'IFRAME') el.src = url; else el.href = url;
+});
+
+$$('[data-whatsapp]').forEach((el) => {
+  const contacto = CONFIG.whatsapp[el.dataset.whatsapp];
+  el.querySelector('span').textContent = `Confirmar con ${contacto.nombre}`;
+  if (contacto.numero) {
+    el.href = `https://wa.me/${contacto.numero}?text=${encodeURIComponent(CONFIG.mensaje)}`;
+  } else {
+    el.classList.add('pendiente');
+    el.removeAttribute('href');
+    el.title = 'Falta configurar el número';
+  }
+});
+
+// ===== Cuenta regresiva =====
+const celdas = ['dias', 'horas', 'minutos', 'segundos'].map((id) => document.getElementById(id));
+function tic() {
+  const s = Math.max(0, Math.floor((inicio - Date.now()) / 1000));
+  const partes = [Math.floor(s / 86400), Math.floor(s / 3600) % 24, Math.floor(s / 60) % 60, s % 60];
+  partes.forEach((v, i) => { celdas[i].textContent = String(v).padStart(2, '0'); });
+}
+tic();
+setInterval(tic, 1000);
